@@ -1,8 +1,8 @@
 package com.sandiindia.rm.model;
 
 public class ShopAddress {
-	public String streetAddress;
-	public String postalCode;
+	private String streetAddress;
+	private String postalCode;
 
 	public String getStreetAddress() {
 		return streetAddress;

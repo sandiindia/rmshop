@@ -3,8 +3,11 @@ package com.sandiindia.rm.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.sandiindia.rm.model.Shop;
 
+@Component
 public class ShopStore implements IShopStore {
 
 	private ArrayList<Shop> shops = new ArrayList<Shop>();

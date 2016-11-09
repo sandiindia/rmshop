@@ -1,11 +1,20 @@
 package com.sandiindia.rm.model;
 
 public class Shop {
-	public String shopId;
-	public String name;
-	public ShopAddress address;
-	public String Longitude;
-	public String Latitude;
+	private String shopId;
+	private String name;
+	private ShopAddress address;
+	private double Longitude;
+	private double Latitude;
+
+	
+	public String getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(String shopId) {
+		this.shopId = shopId;
+	}
 
 	public String getName() {
 		return name;
@@ -23,19 +32,19 @@ public class Shop {
 		this.address = address;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return Longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		Longitude = longitude;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return Latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		Latitude = latitude;
 	}
 
@@ -43,10 +52,14 @@ public class Shop {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Latitude == null) ? 0 : Latitude.hashCode());
-		result = prime * result + ((Longitude == null) ? 0 : Longitude.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(Latitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(Longitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((shopId == null) ? 0 : shopId.hashCode());
 		return result;
 	}
 
@@ -59,15 +72,9 @@ public class Shop {
 		if (getClass() != obj.getClass())
 			return false;
 		Shop other = (Shop) obj;
-		if (Latitude == null) {
-			if (other.Latitude != null)
-				return false;
-		} else if (!Latitude.equals(other.Latitude))
+		if (Double.doubleToLongBits(Latitude) != Double.doubleToLongBits(other.Latitude))
 			return false;
-		if (Longitude == null) {
-			if (other.Longitude != null)
-				return false;
-		} else if (!Longitude.equals(other.Longitude))
+		if (Double.doubleToLongBits(Longitude) != Double.doubleToLongBits(other.Longitude))
 			return false;
 		if (address == null) {
 			if (other.address != null)
@@ -79,7 +86,13 @@ public class Shop {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (shopId == null) {
+			if (other.shopId != null)
+				return false;
+		} else if (!shopId.equals(other.shopId))
+			return false;
 		return true;
 	}
 
+	
 }
