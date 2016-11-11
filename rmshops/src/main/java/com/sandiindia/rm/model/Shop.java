@@ -94,5 +94,11 @@ public class Shop {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Shop [shopId=" + shopId + ", name=" + name + ", address=" + address + ", Longitude=" + Longitude
+				+ ", Latitude=" + Latitude + "]";
+	}
+
 	
 }

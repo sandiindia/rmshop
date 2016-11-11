@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,8 @@ import com.sandiindia.rm.util.RmUtil;
 @Component
 public class ShopService implements IShopService {
 
+	private final static Logger log = Logger.getLogger(ShopService.class);
+	
 	@Autowired
 	IShopStore shopStore;
 	@Autowired
@@ -52,8 +55,8 @@ public class ShopService implements IShopService {
 			newShop.setLatitude(location.getLat());
 			newShop.setLongitude(location.getLingtd());
 		}
-		
 		shopStore.save(newShop);
+		log.info("Added shop {" + newShop.toString() + "}");
 		return newShop;
 	}
 
@@ -81,7 +84,7 @@ public class ShopService implements IShopService {
 		});
 		
 		nearest = !shpds.isEmpty() ? shpds.get(0)._shop : null;
-		
+		log.info("Nearest shop {" + nearest.toString() + "}");
 		return nearest;
 	}
 

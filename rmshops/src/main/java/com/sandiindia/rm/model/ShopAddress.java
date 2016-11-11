@@ -51,4 +51,10 @@ public class ShopAddress {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "ShopAddress [streetAddress=" + streetAddress + ", postalCode=" + postalCode + "]";
+	}
+
+	
 }

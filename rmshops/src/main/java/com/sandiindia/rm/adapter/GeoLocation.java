@@ -45,6 +45,10 @@ public class GeoLocation {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "GeoLocation [lat=" + lat + ", lingtd=" + lingtd + "]";
+	}
 	
 	
 }
