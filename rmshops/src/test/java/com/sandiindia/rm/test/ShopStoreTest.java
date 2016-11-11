@@ -49,6 +49,7 @@ public class ShopStoreTest {
 		address.setPostalCode("60016");
 
 		shop.setAddress(address);
+		
 	}
 
 	@After

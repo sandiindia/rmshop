@@ -10,7 +10,7 @@ import com.sandiindia.rm.model.Shop;
 @Component
 public class ShopStore implements IShopStore {
 
-	private ArrayList<Shop> shops = new ArrayList<Shop>();
+	private static ArrayList<Shop> shops = new ArrayList<Shop>();
 	
 	public void save(Shop shop) {
 		// TODO Auto-generated method stub
