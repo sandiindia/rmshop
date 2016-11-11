@@ -1,7 +1,0 @@
-spring: 
-  application:
-    name: shopservice
-adapter:
-  google:
-    apikey: AIzaSyAhNb8HneEH6hzacRvPbJ4Q89IZ-lmuC3Y
-    apiurl: https://maps.googleapis.com/maps/api/geocode/json
