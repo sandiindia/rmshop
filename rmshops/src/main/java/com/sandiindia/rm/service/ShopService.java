@@ -3,11 +3,15 @@ package com.sandiindia.rm.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sandiindia.rm.adapter.GeoLocation;
+import com.sandiindia.rm.adapter.ILocationAdapter;
 import com.sandiindia.rm.model.Shop;
+import com.sandiindia.rm.model.ShopAddress;
 import com.sandiindia.rm.repository.IShopStore;
 import com.sandiindia.rm.util.RmUtil;
 
@@ -16,6 +20,8 @@ public class ShopService implements IShopService {
 
 	@Autowired
 	IShopStore shopStore;
+	@Autowired
+	ILocationAdapter geoAdapter;
 	
 	class ShopWithDistance
 	{
@@ -31,7 +37,24 @@ public class ShopService implements IShopService {
 	
 	public Shop addShop(String name, String streetAddress, String postalCode) {
 		// TODO Auto-generated method stub
-		return null;
+		Shop newShop = new Shop();
+		newShop.setShopId(UUID.randomUUID().toString());
+		newShop.setName(name);
+		ShopAddress address = new ShopAddress();
+		address.setPostalCode(postalCode);
+		address.setStreetAddress(streetAddress);
+		newShop.setAddress(address);
+		
+		GeoLocation location = geoAdapter.getLocation(address);
+		
+		if (location != null)
+		{
+			newShop.setLatitude(location.getLat());
+			newShop.setLongitude(location.getLingtd());
+		}
+		
+		shopStore.save(newShop);
+		return newShop;
 	}
 
 	public Shop findNearest(double customerLat, double customerLong) {

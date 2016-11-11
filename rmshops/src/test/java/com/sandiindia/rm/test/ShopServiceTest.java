@@ -1,6 +1,7 @@
 package com.sandiindia.rm.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -48,17 +49,18 @@ public class ShopServiceTest {
 	@Test
 	public void testAddShop() {
 		Shop shop = new Shop();
-		shop.setShopId("shop111");
 		shop.setName("Pita Inn");
-		shop.setLatitude(42.0598158);
-		shop.setLongitude(-87.8440398);
+		shop.setLatitude(42.0598998);
+		shop.setLongitude(-87.8439176);
 		ShopAddress address = new ShopAddress();
-		address.setStreetAddress("9854 N Milwaukee Ave");
+		address.setStreetAddress("9854 N Milwaukee Ave, Des Plaines, IL");
 		address.setPostalCode("60016");
 		shop.setAddress(address);
 
-		Shop newShop = service.addShop("Pita Inn", "9854 N Milwaukee Ave", "60016");
+		Shop newShop = service.addShop("Pita Inn", "9854 N Milwaukee Ave, Des Plaines, IL", "60016");
+		shop.setShopId(newShop.getShopId());
 		assertEquals(shop, newShop);
+		assertTrue(shopStore.getAllShops().contains(newShop));
 	}
 
 	@Test
