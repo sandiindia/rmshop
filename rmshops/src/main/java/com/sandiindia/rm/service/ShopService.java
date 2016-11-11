@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.sandiindia.rm.adapter.GeoLocation;
 import com.sandiindia.rm.adapter.ILocationAdapter;
+import com.sandiindia.rm.exception.ShopServiceException;
 import com.sandiindia.rm.model.Shop;
 import com.sandiindia.rm.model.ShopAddress;
 import com.sandiindia.rm.repository.IShopStore;
@@ -54,6 +55,8 @@ public class ShopService implements IShopService {
 		{
 			newShop.setLatitude(location.getLat());
 			newShop.setLongitude(location.getLingtd());
+		} else {
+			throw new ShopServiceException("Cannot find shop location, please check the address and postal code");
 		}
 		shopStore.save(newShop);
 		log.info("Added shop {" + newShop.toString() + "}");

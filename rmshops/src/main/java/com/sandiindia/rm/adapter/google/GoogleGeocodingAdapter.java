@@ -37,16 +37,19 @@ public class GoogleGeocodingAdapter implements ILocationAdapter {
 		
 		GoogleGeoResponse response = restClient.getForObject(apiUrl+"?address={shopaddress}&key={apikey}", GoogleGeoResponse.class, uriVariables);
 
-		GeoLocation geoLocation = new GeoLocation();
+		GeoLocation geoLocation = null;
 
 		if (response != null) {
-			double lat = Double.parseDouble(response.getResults()[0].getGeometry().getLocation().getLat());
-			double longtd = Double.parseDouble(response.getResults()[0].getGeometry().getLocation().getLng());
-			geoLocation.setLat(lat);
-			geoLocation.setLingtd(longtd);
-		} else {
-			geoLocation = null;
-		}
+			if (response.getStatus().equalsIgnoreCase("ok"))
+			{
+				geoLocation = new GeoLocation();
+				double lat = Double.parseDouble(response.getResults()[0].getGeometry().getLocation().getLat());
+				double longtd = Double.parseDouble(response.getResults()[0].getGeometry().getLocation().getLng());
+				geoLocation.setLat(lat);
+				geoLocation.setLingtd(longtd);
+
+			}				
+		} 
 
 		return geoLocation;
 	}
