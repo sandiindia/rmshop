@@ -50,8 +50,8 @@ public class ShopServiceTest {
 	public void testAddShop() {
 		Shop shop = new Shop();
 		shop.setName("Pita Inn");
-		shop.setLatitude(42.0598867);
-		shop.setLongitude(-87.8439479);
+		shop.setLatitude(42.0598998);
+		shop.setLongitude(-87.8439176);
 		ShopAddress address = new ShopAddress();
 		address.setStreetAddress("9854 N Milwaukee Ave, Des Plaines, IL");
 		address.setPostalCode("60016");
